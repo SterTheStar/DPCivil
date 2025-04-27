@@ -25,41 +25,43 @@ module.exports = {
     },
 
     async execute(interaction, client) {
-        const { channelId, adminRole } = require('../config.json'); 
-        const type = interaction.options.getString('tipo');
-        const quantity = interaction.options.getInteger('quantidade');
-        const member = interaction.member;
-        const requestManager = new RequestManager();
-    
-        if (!types.includes(type)) {
-            await interaction.reply({ content: `Invalid type. Available types are: ${types.join(', ')}`, ephemeral: true });
-            return;
+        try{
+            const { channelId, adminRole } = require('../config.json'); 
+            const type = interaction.options.getString('tipo');
+            const quantity = interaction.options.getInteger('quantidade');
+            const member = interaction.member;
+            const requestManager = new RequestManager();
+        
+            if (!types.includes(type)) {
+                await interaction.reply({ content: `Invalid type. Available types are: ${types.join(', ')}`, ephemeral: true });
+                return;
+            }
+        
+            const token = Date.now();
+            const embed = new EmbedBuilder()
+                .setTitle('Nova Solicitação')
+                .setDescription(`Tipo: ${type}\nQuantidade: ${quantity}\nSolicitado por: <@${member.user.id}>\nToken: ${token}`)
+                .setColor('#0099ff')
+                .setTimestamp();
+        
+            const channel = client.channels.cache.get(channelId); 
+            if (!channel) return;
+        
+            const message = await channel.send({ embeds: [embed]});
+            
+        
+            requestManager.addRequest({
+                token: token,
+                type,
+                quantity,
+                memberId: member.user.id,
+                messageId: message.id,
+                channelId: channelId
+            });
+            await interaction.reply({ content: `Sua solicitação com o token ${token} foi enviada!`, ephemeral: true });
+        }catch(error){
+             await interaction.reply({ content: 'An error occurred while sending your request.', ephemeral: true });
         }
-    
-        const token = Date.now();
-        const embed = new EmbedBuilder()
-            .setTitle('Nova Solicitação')
-            .setDescription(`Tipo: ${type}\nQuantidade: ${quantity}\nSolicitado por: <@${member.user.id}>\nToken: ${token}`)
-            .setColor('#0099ff')
-            .setTimestamp();
-    
-        const channel = client.channels.cache.get(channelId); 
-        if (!channel) return;
-    
-        const message = await channel.send({ embeds: [embed]});
-        
-    
-        requestManager.addRequest({
-            token: token,
-            type,
-            quantity,
-            memberId: member.user.id,
-            messageId: message.id,
-            channelId: channelId
-        });
-        
-       
 
-        await interaction.reply({ content: `Sua solicitação com o token ${token} foi enviada!`, ephemeral: true });
     }
 };

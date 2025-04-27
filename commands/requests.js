@@ -5,31 +5,35 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('solicitacoes')
         .setDescription('Mostra o status de suas solicitações.'),
-    async execute(interaction, client) {
-        const requestManager = new RequestManager();
-        const userId = interaction.user.id;
-        const requests = requestManager.getAllRequestsByUser(userId);
+    async execute(interaction, client) {  
+        try {
+            const requestManager = new RequestManager();
+            const userId = interaction.user.id;
+            const requests = requestManager.getAllRequestsByUser(userId);
 
-        if (requests.length === 0) {
-            await interaction.reply({ content: 'You have no requests.', ephemeral: true });
-            return;
-        }
-
-        const embed = new EmbedBuilder()
-            .setColor('#0099ff')
-            .setTitle(`${interaction.user.tag}'s Requests`)
-            .setTimestamp();
-
-        for (const request of requests) {
-            let status = 'On analysis';
-            if (request.accepted) {
-                status = 'Accepted';
-            } else if (request.rejected) {
-                status = 'Rejected';
+            if (requests.length === 0) {
+                await interaction.reply({ content: 'You have no requests.', ephemeral: true });
+                return;
             }
-            embed.addFields({ name: `Token: ${request.token}`, value: `Type: ${request.type}\nQuantity: ${request.quantity}\nStatus: ${status}`, inline: false });
-        }
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+            const embed = new EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle(`${interaction.user.tag}'s Requests`)
+                .setTimestamp();
+
+            for (const request of requests) {
+                let status = 'On analysis';
+                if (request.accepted) {
+                    status = 'Accepted';
+                } else if (request.rejected) {
+                    status = 'Rejected';
+                }
+                embed.addFields({ name: `Token: ${request.token}`, value: `Type: ${request.type}\nQuantity: ${request.quantity}\nStatus: ${status}`, inline: false });
+            }
+
+            await interaction.reply({ embeds: [embed], ephemeral: true });
+        } catch (error) {
+            await interaction.reply({ content: 'An error occurred while showing your requests.', ephemeral: true });
+        }
     },
 };
