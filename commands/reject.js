@@ -3,11 +3,11 @@ const RequestManager = require('../utils/requestManager');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('reject')
-        .setDescription('Reject a request by its token.')
+        .setName('rejeitar')
+        .setDescription('Rejeita uma solicitação pelo seu token.')
         .addStringOption(option =>
             option.setName('token')
-                .setDescription('The token of the request to reject.')
+                .setDescription('O token da solicitação a ser rejeitada.')
                 .setRequired(true)
         ),
     async execute(interaction, client) {

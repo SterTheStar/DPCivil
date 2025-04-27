@@ -4,14 +4,14 @@ const UserManager = require('../utils/userManager');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ranking')
-        .setDescription('Show the ranking of users.')
+        .setDescription('Mostra o ranking de usuários.')
         .addStringOption(option =>
-            option.setName('type')
-                .setDescription('Type of ranking')
+            option.setName('tipo')
+                .setDescription('Tipo de ranking')
                 .setRequired(true)
                 .addChoices(
                     { name: 'Total', value: 'total' },
-                    { name: 'Monthly', value: 'monthly' }
+                    { name: 'Mensal', value: 'monthly' }
                 )
         ),
     async execute(interaction, client) {

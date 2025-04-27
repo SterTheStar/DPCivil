@@ -3,30 +3,30 @@ const BlacklistManager = require('../utils/BlacklistManager');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('blacklist')
-        .setDescription('Manage the blacklist.')
+        .setName('lista-negra')
+        .setDescription('Gerencia a lista negra.')
         .addSubcommand(subcommand =>
             subcommand
-                .setName('add')
-                .setDescription('Add a user to the blacklist.')
-                .addUserOption(option => option.setName('user').setDescription('The user to add.').setRequired(true))
+                .setName('adicionar')
+                .setDescription('Adiciona um usuário à lista negra.')
+                .addUserOption(option => option.setName('usuario').setDescription('O usuário a ser adicionado.').setRequired(true))
         )
         .addSubcommand(subcommand =>
             subcommand
-                .setName('delete')
-                .setDescription('Delete a user from the blacklist.')
-                .addUserOption(option => option.setName('user').setDescription('The user to delete.').setRequired(true))
+                .setName('remover')
+                .setDescription('Remove um usuário da lista negra.')
+                .addUserOption(option => option.setName('usuario').setDescription('O usuário a ser removido.').setRequired(true))
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('info')
-                .setDescription('Get info about a user in the blacklist.')
-                .addUserOption(option => option.setName('user').setDescription('The user to get info about.').setRequired(true))
+                .setDescription('Obtém informações sobre um usuário na lista negra.')
+                .addUserOption(option => option.setName('usuario').setDescription('O usuario a obter informações').setRequired(true))
         ),
     async execute(interaction, client) {
         const blacklistManager = new BlacklistManager();
         const subcommand = interaction.options.getSubcommand();
-        const user = interaction.options.getUser('user');
+        const user = interaction.options.getUser('usuario');
 
         if (subcommand === 'add') {
             if(blacklistManager.isBlacklisted(user.id)){

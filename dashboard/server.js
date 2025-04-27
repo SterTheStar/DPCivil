@@ -1,6 +1,4 @@
-const app = require('./app');
-
-const port = 3000;
+const { app, port } = require('./app');
 
 app.listen(port, () => {
   console.log(`Dashboard server is online and running on port ${port}`);

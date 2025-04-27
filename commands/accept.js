@@ -4,11 +4,11 @@ const UserManager = require('../utils/userManager');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('accept')
-        .setDescription('Accept a request by token.')
+        .setName('aceitar')
+        .setDescription('Aceita uma solicitação pelo token.')
         .addIntegerOption(option =>
             option.setName('token')
-                .setDescription('The token of the request to accept.')
+                .setDescription('O token da solicitação a ser aceita.')
                 .setRequired(true)
         ),
     async execute(interaction, client) {

@@ -3,8 +3,8 @@ const RequestManager = require('../utils/requestManager');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('requests')
-        .setDescription('Show your requests status.'),
+        .setName('solicitacoes')
+        .setDescription('Mostra o status de suas solicitações.'),
     async execute(interaction, client) {
         const requestManager = new RequestManager();
         const userId = interaction.user.id;

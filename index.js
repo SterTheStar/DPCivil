@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
-const { fork } = require('child_process');
+const { fork, exec } = require('child_process');
 const { token, channelId, adminRole, blacklistRole, exonerarChannel, exonerarRole } = require('./config.json');
 const schedule = require('node-schedule');
 const UserManager = require('./utils/userManager')
@@ -54,9 +54,14 @@ const job = schedule.scheduleJob('0 0 0 1 * *', 'America/Sao_Paulo', function() 
   console.log('Monthly ranking reset complete.');
 });
 
+// Deploy commands
+exec('node deploy-commands.js', (error, stdout, stderr) => {
+  if (error) console.error(`Error deploying commands: ${error}`);
+  if (stderr) console.error(`Command deployment stderr: ${stderr}`);
+  console.log(`Command deployment stdout: ${stdout}`);
+});
+
 // Run dashboard server
 const dashboardPath = path.join(__dirname, 'dashboard', 'server.js');
 fork(dashboardPath)
-
-
 client.login(token);

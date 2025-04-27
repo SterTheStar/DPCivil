@@ -4,10 +4,10 @@ const UserManager = require('../utils/userManager');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('status')
-        .setDescription('Show your own status or the status of another user.')
+        .setDescription('Mostra seu status ou o status de outro usuário.')
         .addUserOption(option =>
-            option.setName('user')
-                .setDescription('The user to check the status of.')
+            option.setName('usuario')
+                .setDescription('O usuário para verificar o status.')
                 .setRequired(false)
         ),
     async execute(interaction, client) {

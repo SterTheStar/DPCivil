@@ -10,14 +10,14 @@ module.exports = {
         options: [ 
             {
                 name: 'type',
-                description: 'Type of request',
+                description: 'Tipo de solicitação',
                 type: 3,
                 required: true,
                 choices: types.map(type => ({ name: type, value: type }))
             },
             {
-                name: 'quantity',
-                description: 'Quantity of items',
+                name: 'quantidade',
+                description: 'Quantidade de itens',
                 type: 4,
                 required: true
             }
@@ -26,8 +26,8 @@ module.exports = {
 
     async execute(interaction, client) {
         const { channelId, adminRole } = require('../config.json'); 
-        const type = interaction.options.getString('type');
-        const quantity = interaction.options.getInteger('quantity');
+        const type = interaction.options.getString('tipo');
+        const quantity = interaction.options.getInteger('quantidade');
         const member = interaction.member;
         const requestManager = new RequestManager();
     

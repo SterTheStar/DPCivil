@@ -3,33 +3,33 @@ const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('disc
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('exonerar')
-        .setDescription('Exonerate a user from their roles.')
+        .setDescription('Exonera um usuário de suas funções.')
         .addUserOption(option =>
-            option.setName('user')
-                .setDescription('The user to exonerate.')
+            option.setName('usuario')
+                .setDescription('O usuário a ser exonerado.')
                 .setRequired(true))
         .addStringOption(option =>
             option.setName('qra')
-                .setDescription('The QRA of the exonerated user.')
+                .setDescription('O QRA do usuário exonerado.')
                 .setRequired(true))
         .addStringOption(option =>
             option.setName('id')
-                .setDescription('The ID of the exonerated user.')
+                .setDescription('O ID do usuário exonerado.')
                 .setRequired(true))
         .addStringOption(option =>
             option.setName('motivo')
-                .setDescription('The reason for the exoneration.')
+                .setDescription('O motivo da exoneração.')
                 .setRequired(true))
         .addStringOption(option => 
-            option.setName('media')
-                .setDescription('Media (image/video link) related to the exoneration')
+            option.setName('midia')
+                .setDescription('Mídia (link de imagem/vídeo) relacionada à exoneração.')
                 .setRequired(false))
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .setDMPermission(false),
     async execute(interaction, client) {
         const { exonerarRole, exonerarChannel } = client.config
         if (!exonerarChannel || !exonerarRole) {
-            await interaction.reply({ content: 'Config error: exonerarChannel or exonerarRole is not defined in the config file.', ephemeral: true });
+          await interaction.reply({ content: 'Erro de configuração: exonerarChannel ou exonerarRole não está definido no arquivo config.', ephemeral: true });
             return;
         }
         const user = interaction.options.getMember('user');
