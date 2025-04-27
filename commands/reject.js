@@ -13,15 +13,15 @@ module.exports = {
     async execute(interaction, client) {
         try{
             const requestManager = new RequestManager();
-            const token = interaction.options.getString('token');
-            const request = requestManager.getRequest(parseInt(token));
+            const token = parseInt(interaction.options.getString('token'));
+            const request = requestManager.getRequest(token);
 
             if (!request) {
                 await interaction.reply({ content: 'Invalid or expired token.', ephemeral: true });
                 return;
             }
 
-            requestManager.updateRequest(parseInt(token), { rejected: true })
+            requestManager.updateRequest(token, { rejected: true })
             const { type, quantity, memberId, messageId, channelId } = request;
             const channel = client.channels.cache.get(channelId);
             const message = await channel.messages.fetch(messageId);
@@ -30,7 +30,7 @@ module.exports = {
             user.send(`Your request for ${quantity} ${type} has been rejected!`);
             const newEmbed = EmbedBuilder.from(message.embeds[0]).setColor('Red').setTitle(`[REJECTED] Request Token ${token}`);
             message.edit({ embeds: [newEmbed], components: [] });
-            requestManager.deleteRequest(parseInt(token));
+            requestManager.deleteRequest(token);
 
             await interaction.reply({ content: `Request ${token} has been rejected.`, ephemeral: true });
         }catch(error){

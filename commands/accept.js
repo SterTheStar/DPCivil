@@ -15,7 +15,7 @@ module.exports = {
         try{
             const requestManager = new RequestManager();
             const userManager = new UserManager();
-            const token = interaction.options.getInteger('token');
+            const token = parseInt(interaction.options.getInteger('token'));
             const request = requestManager.getRequest(token);
 
             if (!request) {
@@ -31,8 +31,8 @@ module.exports = {
             user.send(`Your request for ${quantity} ${type} has been accepted!`);
             const newEmbed = EmbedBuilder.from(message.embeds[0]).setColor('Green').setTitle(`[ACCEPTED] Request Token ${token}`);
             userManager.addItem(memberId, type, quantity);
-            requestManager.updateRequest(token, { accepted: true })
-            requestManager.deleteRequest(token);
+            requestManager.updateRequest(parseInt(token), { accepted: true })
+            requestManager.deleteRequest(parseInt(token));
             message.edit({ embeds: [newEmbed], components: [] });
 
             await interaction.reply({ content: `Request ${token} has been accepted.`, ephemeral: true });
