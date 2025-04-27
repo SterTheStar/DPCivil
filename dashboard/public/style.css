@@ -1,0 +1,178 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Modern font */
+    margin: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #1e1e1e; /* Darker sidebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sidebar h1 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar nav button {
+    background-color: #2e2e2e; /* Slightly lighter for sidebar buttons */
+    color: #e0e0e0;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+    transition: background-color 0.3s; /* Smooth transition on hover */
+    display: flex;
+    align-items: center;
+}
+
+.sidebar nav button:hover {
+    background-color: #444; /* Darker on hover */
+}
+
+.sidebar nav button i {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+/* Header */
+header {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+h2 {
+    margin-top: 0;
+    color: #e0e0e0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+th, td {
+    border: none;
+    padding: 12px 15px;
+    text-align: center;
+}
+
+th {
+    background-color: #2e2e2e;
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #252525;
+}
+
+/* Buttons */
+.accept-btn, .reject-btn {
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+
+.accept-btn {
+    background-color: #28a745; /* Green */
+}
+
+.accept-btn:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.reject-btn {
+    background-color: #dc3545; /* Red */
+}
+
+.reject-btn:hover {
+    background-color: #c82333; /* Darker red */
+}
+
+/* Modules */
+.module {
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Ranking Buttons */
+#ranking div {
+    margin-bottom: 20px;
+}
+
+#ranking div button {
+    background-color: #444;
+    color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#ranking div button:hover {
+    background-color: #555;
+}
+
+/* Ranking table colors */
+.ranking-table-row-1{
+    background-color: #FFD700;
+    color: #000;
+}
+.ranking-table-row-2{
+    background-color: #C0C0C0;
+    color: #000;
+}
+.ranking-table-row-3{
+    background-color: #CD7F32;
+    color: #000;
+}
