@@ -16,21 +16,20 @@ module.exports = {
                 return;
             }
 
-            const embed = new EmbedBuilder()
-                .setColor('#0099ff')
-                .setTitle(`${interaction.user.tag}'s Requests`)
-                .setTimestamp();
-
-            for (const request of requests) {
+            const fields = requests.map(request => {
                 let status = 'On analysis';
                 if (request.accepted) {
                     status = 'Accepted';
                 } else if (request.rejected) {
                     status = 'Rejected';
                 }
-                embed.addFields({ name: `Token: ${request.token}`, value: `Type: ${request.type}\nQuantity: ${request.quantity}\nStatus: ${status}`, inline: false });
-            }
+                return { name: `Token: ${request.token}`, value: `Type: ${request.type}\nQuantity: ${request.quantity}\nStatus: ${status}`, inline: false };
+            });
 
+            const embed = new EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle(`${interaction.user.tag}'s Requests`)
+                .setTimestamp().addFields(fields);
             await interaction.reply({ embeds: [embed], ephemeral: true });
         } catch (error) {
             await interaction.reply({ content: 'An error occurred while showing your requests.', ephemeral: true });

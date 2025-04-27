@@ -1,10 +1,10 @@
 {
-  "token": "YOUR_BOT_TOKEN_HERE",
-  "channelId": "YOUR_CHANNEL_ID_HERE",
-  "adminRole": "YOUR_ADMIN_ROLE_ID_HERE",
-  "blacklistRole": "YOUR_BLACKLIST_ROLE_ID_HERE",
-  "exonerarRole": "YOUR_EXONERAR_ROLE_ID_HERE",
-  "exonerarChannel": "YOUR_EXONERAR_CHANNEL_ID_HERE",
-  "clientId": "YOUR_CLIENT_ID_HERE",
-  "guildId": "YOUR_GUILD_ID_HERE"
+  "token": "MTMzODU0Nzc5ODYxODE0NDkxOQ.Gy6y68.01XRuZBUSyszYiQ0JSD7x7atD1QMSG9AI6E2zQ",
+  "channelId": "1366184698837205074",
+  "adminRole": "1366184999619137647",
+  "blacklistRole": "1366184845885050981",
+  "exonerarRole": "1366184817309384847",
+  "exonerarChannel": "1366184698837205074",
+  "clientId": "1338547798618144919",
+  "guildId": "1366184697834770455"
 }

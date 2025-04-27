@@ -46,7 +46,7 @@ module.exports = {
             const channel = client.channels.cache.get(exonerarChannel);
             if (!channel) {
                 console.error(`Exoneration channel not found with ID: ${exonerarChannel}`);
-                await interaction.editReply({ content: 'User exonerated, but could not post the information due to a configuration error.' });
+                await interaction.editReply({ content: 'User exonerated, but could not post the information due to a configuration error.', ephemeral: true });
                 return;
             }
 
@@ -64,11 +64,11 @@ module.exports = {
                 }
 
             await channel.send({ embeds: [embed] });
-            await interaction.editReply({ content: `User ${user.user.tag} has been exonerated.` });
+            await interaction.editReply({ content: `User ${user.user.tag} has been exonerated.`, ephemeral: true });
 
         } catch (error) {
             console.error('Error exonerating user:', error);
-            await interaction.reply({ content: 'An error occurred while exonerating the user.', ephemeral: true });
+            await interaction.editReply({ content: 'An error occurred while exonerating the user.', ephemeral: true });
         }
     },
 };

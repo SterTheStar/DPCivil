@@ -1,6 +1,8 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const RequestManager = require('../utils/requestManager');
+const { channelId, adminRole } = require('../config.json');
 
+const requestManager = new RequestManager()
 const types = ['Recrutamentos', 'Prisões'];
 
 module.exports = {
@@ -26,12 +28,11 @@ module.exports = {
 
     async execute(interaction, client) {
         try{
-            const { channelId, adminRole } = require('../config.json'); 
-            const type = interaction.options.getString('tipo');
+            const type = interaction.options.getString('type');
             const quantity = interaction.options.getInteger('quantidade');
             const member = interaction.member;
-            const requestManager = new RequestManager();
-        
+            
+
             if (!types.includes(type)) {
                 await interaction.reply({ content: `Invalid type. Available types are: ${types.join(', ')}`, ephemeral: true });
                 return;
